@@ -4,9 +4,6 @@ const Person = {
 	company: 'Amintiri din copilarie SRL',
 }
 
-let first;
-let last;
-
 function stringTemplate(str) {
 	return  str.charAt(0).toUpperCase() + str.slice(1)
 }
