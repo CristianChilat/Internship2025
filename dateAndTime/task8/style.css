@@ -1,0 +1,20 @@
+body {
+    padding-top: 5em;
+    text-align: center;
+}
+
+#clock-container {
+    display: inline-block;
+}
+
+#hours {
+    color: red;
+}
+
+#minutes {
+    color: green;
+}
+
+#seconds {
+    color: blue;
+}
