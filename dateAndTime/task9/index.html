@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="timer-container">
+		<div id="timer-display">
+			<div id="days-display">
+			
+			</div>
+			<div>
+				:
+			</div>
+			<div id="hours-display">
+			
+			</div>
+			<div>
+				:
+			</div>
+			<div id="minutes-display">
+			
+			</div>
+		</div>
+		<div id="timer-input-container">
+			<div>
+				<span>Days: </span>
+				<label for="days-input">
+					<input id="days-input" type="number" min="0">
+				</label>
+			</div>
+			<div>
+				<span>Hours: </span>
+				<label for="hours-input">
+					<input id="hours-input" type="number" min="0" max="23">
+				</label>
+			</div>
+			<div>
+				<span>Minutes: </span>
+				<label for="minutes-input">
+					<input id="minutes-input" type="number" min="0" max="59">
+				</label>
+			</div>
+		</div>
+		<div id="timer-buttons">
+			<input type="button" value="Start" id="start-button">
+			<input type="button" value="Stop" id="stop-button">
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>

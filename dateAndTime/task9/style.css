@@ -1,0 +1,15 @@
+#timer-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+}
+
+#timer-input-container {
+    display: flex;
+    gap: 1em;
+}
+
+#timer-display div {
+    display: inline;
+}
