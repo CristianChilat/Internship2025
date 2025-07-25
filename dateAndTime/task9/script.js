@@ -17,9 +17,9 @@ const timerInputElements = {
 }
 
 const timeToMS = {
-	daysMs: 60 * 60 * 24 * 1000,
-	hoursMs: 60 * 60 * 1000,
-	minutesMs: 60 * 1000,
+	DAYS_TO_MS: 60 * 60 * 24 * 1000,
+	HOURS_TO_MS: 60 * 60 * 1000,
+	MINUTES_TO_MS: 60 * 1000,
 }
 
 let intervalId = null;
@@ -60,19 +60,19 @@ function timerDisplayUpdater (daysInputValue, hoursInputValue, minutesInputValue
 }
 
 function calculateTotalTimeInMs (daysValue, hoursValue, minutesValue) {
-	return daysValue * timeToMS.daysMs + hoursValue * timeToMS.hoursMs + minutesValue * timeToMS.minutesMs;
+	return daysValue * timeToMS.DAYS_TO_MS + hoursValue * timeToMS.HOURS_TO_MS + minutesValue * timeToMS.MINUTES_TO_MS;
 }
 
 function calculateDaysValue (totalMsTime) {
-	return Math.floor(totalMsTime / timeToMS.daysMs);
+	return Math.floor(totalMsTime / timeToMS.DAYS_TO_MS);
 }
 
 function calculateHoursValue (totalMsTime, daysTime) {
-	return Math.floor((totalMsTime - (timeToMS.daysMs * daysTime)) / timeToMS.hoursMs);
+	return Math.floor((totalMsTime - (timeToMS.DAYS_TO_MS * daysTime)) / timeToMS.HOURS_TO_MS);
 }
 
 function calculateMinutesValue (totalMsTime, daysTime, hoursTime) {
-	return Math.floor((totalMsTime - (timeToMS.daysMs * daysTime) - (timeToMS.hoursMs * hoursTime)) / timeToMS.minutesMs);
+	return Math.floor((totalMsTime - (timeToMS.DAYS_TO_MS * daysTime) - (timeToMS.HOURS_TO_MS * hoursTime)) / timeToMS.MINUTES_TO_MS);
 }
 
 function timerValuesUpdater (totalMsTime) {
