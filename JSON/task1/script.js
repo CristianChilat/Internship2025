@@ -1,10 +1,3 @@
-let user = {
-	sayHi() { // ignored
-		alert("Hello");
-	},
-	[Symbol("id")]: 123, // ignored
-	something: undefined, // ignored,
-	name: 'John'
-};
+const names = ["James", "Jake"];
 
-console.log( JSON.stringify(user) );
+console.log(JSON.stringify(names));
