@@ -1,27 +1,42 @@
 const clockElements = {
-	hours: document.getElementById('hours'),
-	minutes: document.getElementById('minutes'),
-	seconds: document.getElementById('seconds'),
-	start: document.getElementById('start'),
-	stop: document.getElementById('stop')
+	time: {
+		hours: document.getElementById('hours'),
+		minutes: document.getElementById('minutes'),
+		seconds: document.getElementById('seconds'),
+	},
+	controls: {
+		start: document.getElementById('start'),
+		stop: document.getElementById('stop')
+	}
 }
 
-function clockUpdater () {
-	clockElements.hours.innerHTML = String(new Date().getHours()).padStart(2, '0');
-	clockElements.minutes.innerHTML = String(new Date().getMinutes()).padStart(2, '0');
-	clockElements.seconds.innerHTML = String(new Date().getSeconds()).padStart(2, '0');
+let intervalId = null;
+
+const clockUpdater = () => {
+	clockElements.time.hours.innerHTML = String(new Date().getHours()).padStart(2, '0');
+	clockElements.time.minutes.innerHTML = String(new Date().getMinutes()).padStart(2, '0');
+	clockElements.time.seconds.innerHTML = String(new Date().getSeconds()).padStart(2, '0');
 }
 
-clockUpdater();
+const startClock = (firstLoad) => {
+	intervalId = setInterval(clockUpdater, firstLoad ? 0 : 1000);
+}
 
-let intervalId = setInterval(clockUpdater, 1000);
-
-clockElements.start.addEventListener('click', () => {
-
+const stopClock = () => {
 	clearInterval(intervalId);
-	intervalId = setInterval(clockUpdater, 1000)
-})
+}
 
-clockElements.stop.addEventListener('click', () => {
-	clearInterval(intervalId);
-})
+const main = () => {
+	startClock(true);
+
+	clockElements.controls.start.addEventListener('click', () => {
+		stopClock()
+		startClock()
+	})
+
+	clockElements.controls.stop.addEventListener('click', () => {
+		stopClock()
+	})
+}
+
+main()
