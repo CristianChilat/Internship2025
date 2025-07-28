@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.employee-container {
+    background-color: beige;
+    display: flex;
+    width: fit-content;
+}
+
+.employee-body {
+    border: 1px solid black;
+}
+
+.employee-container .employee-body > div {
+    padding: 0.5em;
+}
+
+.employee-name, .employee-surname{
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.employee-contacts-info-header, .employee-personal-info-header, .employee-work-info-header, .employee-salaries-info-header {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.employee-salaries-info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    background-color: darkgreen;
+    width: fit-content;
+    padding: 0.5em;
+}
+
+.employee-salaries-info-container div {
+    color: #e8e8e8;
+}
