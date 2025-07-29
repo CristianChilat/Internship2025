@@ -1,4 +1,4 @@
-const jsonEmployees = `[
+const employeesJSON = `[
 	{
 		"personalInfo": {
 			"name": "John",
@@ -86,36 +86,44 @@ const jsonEmployees = `[
 			}
 		}
 	}
-]`
+]`;
+
+let errorMessage = null;
 
 const employeeStructureElements = {
 	container: document.createElement("div"),
-	body: document.createElement("div"),
+	body: null,
 }
 
 employeeStructureElements.container.className = "employee-container";
 
 function parseJSON(str) {
-	return JSON.parse(str);
+	try{
+		return JSON.parse(str);
+	} catch(e) {
+		console.log(e);
+		errorMessage = e;
+		return null;
+	}
 }
 
-const employees = parseJSON(jsonEmployees);
+const employees = parseJSON(employeesJSON);
 
-function displayEmployee(employee, employeesStructure) {
-	employeesStructure.body = document.createElement("div");
-	employeesStructure.body.className = "employee-body";
+function displayEmployee(employee, employeeStructure) {
+	employeeStructure.body = document.createElement("div");
+	employeeStructure.body.className = "employee-body";
 
-	employeesStructure.body.appendChild(displayPersonalInformation(employee));
-	employeesStructure.body.appendChild(displayContactsInformation(employee));
-	employeesStructure.body.appendChild(displayWorkInformation(employee));// Missing className assignments for these elements
+	employeeStructure.body.appendChild(displayPersonalInformation(employee));
+	employeeStructure.body.appendChild(displayContactsInformation(employee));
+	employeeStructure.body.appendChild(displayWorkInformation(employee));// Missing className assignments for these elements
 
-	employeesStructure.container.appendChild(employeesStructure.body);
+	employeeStructure.container.appendChild(employeeStructure.body);
 
-	document.body.appendChild(employeesStructure.container);
+	document.body.appendChild(employeeStructure.container);
 }
 
-function displayPersonalInformation(employees) {
-	const employeesPersonalInfoElements = {
+function displayPersonalInformation(employee) {
+	const employeePersonalInfoElements = {
 		container: document.createElement("div"),
 		header: document.createElement("div"),
 		name: document.createElement("div"),
@@ -127,41 +135,41 @@ function displayPersonalInformation(employees) {
 		gender: document.createElement("div"),
 	}
 
-	employeesPersonalInfoElements.container.className = "employee-personal-info-container";
-	employeesPersonalInfoElements.name.className = "employee-name";
-	employeesPersonalInfoElements.header.className = "employee-personal-info-header";
-	employeesPersonalInfoElements.surname.className = "employee-surname";
-	employeesPersonalInfoElements.IDNP.className = "employee-idnp";
-	employeesPersonalInfoElements.domicileAddress.className = "employee-domicile-address";
-	employeesPersonalInfoElements.birthPlace.className = "employee-birthPlace";
-	employeesPersonalInfoElements.birthday.className = "employee-birthday";
-	employeesPersonalInfoElements.gender.className = "employee-gender";
-	employeesPersonalInfoElements.name.innerHTML = "name";
-	employeesPersonalInfoElements.surname.innerHTML = "surname";
+	employeePersonalInfoElements.container.className = "employee-personal-info-container";
+	employeePersonalInfoElements.name.className = "employee-name";
+	employeePersonalInfoElements.header.className = "employee-personal-info-header";
+	employeePersonalInfoElements.surname.className = "employee-surname";
+	employeePersonalInfoElements.IDNP.className = "employee-idnp";
+	employeePersonalInfoElements.domicileAddress.className = "employee-domicile-address";
+	employeePersonalInfoElements.birthPlace.className = "employee-birthPlace";
+	employeePersonalInfoElements.birthday.className = "employee-birthday";
+	employeePersonalInfoElements.gender.className = "employee-gender";
+	employeePersonalInfoElements.name.innerHTML = "name";
+	employeePersonalInfoElements.surname.innerHTML = "surname";
 
-	employeesPersonalInfoElements.name.innerHTML = `Name: ${employees.personalInfo.name}`;
-	employeesPersonalInfoElements.surname.innerHTML = `Surname: ${employees.personalInfo.surname}`;
-	employeesPersonalInfoElements.header.innerHTML = "Personal information";
-	employeesPersonalInfoElements.IDNP.innerHTML = `IDNP: ${employees.personalInfo.IDNP}`;
-	employeesPersonalInfoElements.domicileAddress.innerHTML = `Domicile address: ${employees.personalInfo.domicileAddress}`;
-	employeesPersonalInfoElements.birthPlace.innerHTML = `Birth place: ${employees.personalInfo.birthPlace}`;
-	employeesPersonalInfoElements.birthday.innerHTML = `Birthday: ${employees.personalInfo.birthday}`;
-	employeesPersonalInfoElements.gender.innerHTML = `Gender: ${employees.personalInfo.gender}`;
+	employeePersonalInfoElements.name.innerHTML = `Name: ${employee.personalInfo.name}`;
+	employeePersonalInfoElements.surname.innerHTML = `Surname: ${employee.personalInfo.surname}`;
+	employeePersonalInfoElements.header.innerHTML = "Personal information";
+	employeePersonalInfoElements.IDNP.innerHTML = `IDNP: ${employee.personalInfo.IDNP}`;
+	employeePersonalInfoElements.domicileAddress.innerHTML = `Domicile address: ${employee.personalInfo.domicileAddress}`;
+	employeePersonalInfoElements.birthPlace.innerHTML = `Birth place: ${employee.personalInfo.birthPlace}`;
+	employeePersonalInfoElements.birthday.innerHTML = `Birthday: ${employee.personalInfo.birthday}`;
+	employeePersonalInfoElements.gender.innerHTML = `Gender: ${employee.personalInfo.gender}`;
 
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.name);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.surname);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.header);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.IDNP);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.domicileAddress);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.birthPlace);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.birthday);
-	employeesPersonalInfoElements.container.appendChild(employeesPersonalInfoElements.gender);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.name);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.surname);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.header);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.IDNP);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.domicileAddress);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.birthPlace);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.birthday);
+	employeePersonalInfoElements.container.appendChild(employeePersonalInfoElements.gender);
 
-	return employeesPersonalInfoElements.container;
+	return employeePersonalInfoElements.container;
 }
 
-function displayContactsInformation(employees) {
-	const employeesContactsInfoElements = {
+function displayContactsInformation(employee) {
+	const employeeContactsInfoElements = {
 		container: document.createElement("div"),
 		header: document.createElement("div"),
 		email: document.createElement("div"),
@@ -169,27 +177,27 @@ function displayContactsInformation(employees) {
 		domicilePhone: document.createElement("div"),
 	}
 
-	employeesContactsInfoElements.container.className = "employee-contacts-info-container";
-	employeesContactsInfoElements.header.className = "employee-contacts-info-header";
-	employeesContactsInfoElements.email.className = "employee-email";
-	employeesContactsInfoElements.phoneNumber.className = "employee-phone-number";
-	employeesContactsInfoElements.domicilePhone.className = "employee-domicile-phone";
+	employeeContactsInfoElements.container.className = "employee-contacts-info-container";
+	employeeContactsInfoElements.header.className = "employee-contacts-info-header";
+	employeeContactsInfoElements.email.className = "employee-email";
+	employeeContactsInfoElements.phoneNumber.className = "employee-phone-number";
+	employeeContactsInfoElements.domicilePhone.className = "employee-domicile-phone";
 
-	employeesContactsInfoElements.header.innerHTML = "Contacts information";
-	employeesContactsInfoElements.email.innerHTML = `Email: ${employees.contactInfo.email}`;
-	employeesContactsInfoElements.phoneNumber.innerHTML = `Phone number: ${employees.contactInfo.phoneNumber}`;
-	employeesContactsInfoElements.domicilePhone.innerHTML = `Domicile phone: ${employees.contactInfo.domicilePhone}`;
+	employeeContactsInfoElements.header.innerHTML = "Contacts information";
+	employeeContactsInfoElements.email.innerHTML = `Email: ${employee.contactInfo.email}`;
+	employeeContactsInfoElements.phoneNumber.innerHTML = `Phone number: ${employee.contactInfo.phoneNumber}`;
+	employeeContactsInfoElements.domicilePhone.innerHTML = `Domicile phone: ${employee.contactInfo.domicilePhone}`;
 
-	employeesContactsInfoElements.container.appendChild(employeesContactsInfoElements.header);
-	employeesContactsInfoElements.container.appendChild(employeesContactsInfoElements.email);
-	employeesContactsInfoElements.container.appendChild(employeesContactsInfoElements.phoneNumber);
-	employeesContactsInfoElements.container.appendChild(employeesContactsInfoElements.domicilePhone);
+	employeeContactsInfoElements.container.appendChild(employeeContactsInfoElements.header);
+	employeeContactsInfoElements.container.appendChild(employeeContactsInfoElements.email);
+	employeeContactsInfoElements.container.appendChild(employeeContactsInfoElements.phoneNumber);
+	employeeContactsInfoElements.container.appendChild(employeeContactsInfoElements.domicilePhone);
 
-	return employeesContactsInfoElements.container;
+	return employeeContactsInfoElements.container;
 }
 
-function displayWorkInformation(employees) {
-	const employeesWorkInfoElements = {
+function displayWorkInformation(employee) {
+	const employeeWorkInfoElements = {
 		container: document.createElement("div"),
 		header: document.createElement("div"),
 		post: document.createElement("div"),
@@ -203,66 +211,66 @@ function displayWorkInformation(employees) {
 		workTimeLunchEnd: document.createElement("div"),
 	}
 
-	employeesWorkInfoElements.container.className = "employee-work-info-container";
-	employeesWorkInfoElements.header.className = "employee-work-info-header";
-	employeesWorkInfoElements.post.className = "employee-post";
-	employeesWorkInfoElements.startWorkingDate.className = "employee-start-working-date";
-	employeesWorkInfoElements.salary.className = "employee-salary";
-	employeesWorkInfoElements.yearsExperience.className = "employee-years-experience";
-	employeesWorkInfoElements.department.className = "employee-department";
-	employeesWorkInfoElements.workTimeStart.className = "employee-work-time-start";
-	employeesWorkInfoElements.workTimeEnd.className = "employee-work-time-end";
-	employeesWorkInfoElements.workTimeLunchStart.className = "employee-work-time-lunch-start";
-	employeesWorkInfoElements.workTimeLunchEnd.className = "employee-work-time-lunch-end";
+	employeeWorkInfoElements.container.className = "employee-work-info-container";
+	employeeWorkInfoElements.header.className = "employee-work-info-header";
+	employeeWorkInfoElements.post.className = "employee-post";
+	employeeWorkInfoElements.startWorkingDate.className = "employee-start-working-date";
+	employeeWorkInfoElements.salary.className = "employee-salary";
+	employeeWorkInfoElements.yearsExperience.className = "employee-years-experience";
+	employeeWorkInfoElements.department.className = "employee-department";
+	employeeWorkInfoElements.workTimeStart.className = "employee-work-time-start";
+	employeeWorkInfoElements.workTimeEnd.className = "employee-work-time-end";
+	employeeWorkInfoElements.workTimeLunchStart.className = "employee-work-time-lunch-start";
+	employeeWorkInfoElements.workTimeLunchEnd.className = "employee-work-time-lunch-end";
 
-	employeesWorkInfoElements.header.innerHTML = 'Work Information';
-	employeesWorkInfoElements.post.innerHTML = `Post: ${employees.workInfo.post}`;
-	employeesWorkInfoElements.workTimeStart.innerHTML = `Start work time: ${employees.workInfo.workTime.start}`;
-	employeesWorkInfoElements.startWorkingDate.innerHTML= `Works since: ${employees.workInfo.startWorkingDate}`;
-	employeesWorkInfoElements.salary.innerHTML = `Salary: ${employees.workInfo.salary} $`;
-	employeesWorkInfoElements.yearsExperience.innerHTML = `Years of experience: ${employees.workInfo.yearsExperience}`;
-	employeesWorkInfoElements.department.innerHTML = `Department: ${employees.workInfo.department}`;
-	employeesWorkInfoElements.workTimeStart.innerHTML = `Work time: ${employees.workInfo.workTime.start}`
-	employeesWorkInfoElements.workTimeEnd.innerHTML = `End work time: ${employees.workInfo.workTime.end}`;
-	employeesWorkInfoElements.workTimeLunchStart.innerHTML = `Start lunch time : ${employees.workInfo.workTime.lunchStart}`;
-	employeesWorkInfoElements.workTimeLunchEnd.innerHTML = `End lunch time : ${employees.workInfo.workTime.lunchEnd}`;
+	employeeWorkInfoElements.header.innerHTML = 'Work Information';
+	employeeWorkInfoElements.post.innerHTML = `Post: ${employee.workInfo.post}`;
+	employeeWorkInfoElements.workTimeStart.innerHTML = `Start work time: ${employee.workInfo.workTime.start}`;
+	employeeWorkInfoElements.startWorkingDate.innerHTML= `Works since: ${employee.workInfo.startWorkingDate}`;
+	employeeWorkInfoElements.salary.innerHTML = `Salary: ${employee.workInfo.salary} $`;
+	employeeWorkInfoElements.yearsExperience.innerHTML = `Years of experience: ${employee.workInfo.yearsExperience}`;
+	employeeWorkInfoElements.department.innerHTML = `Department: ${employee.workInfo.department}`;
+	employeeWorkInfoElements.workTimeStart.innerHTML = `Work time: ${employee.workInfo.workTime.start}`
+	employeeWorkInfoElements.workTimeEnd.innerHTML = `End work time: ${employee.workInfo.workTime.end}`;
+	employeeWorkInfoElements.workTimeLunchStart.innerHTML = `Start lunch time : ${employee.workInfo.workTime.lunchStart}`;
+	employeeWorkInfoElements.workTimeLunchEnd.innerHTML = `End lunch time : ${employee.workInfo.workTime.lunchEnd}`;
 
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.header);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.post);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.startWorkingDate);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.salary);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.yearsExperience);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.department);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.workTimeStart);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.workTimeEnd);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.workTimeLunchStart);
-	employeesWorkInfoElements.container.appendChild(employeesWorkInfoElements.workTimeLunchEnd);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.header);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.post);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.startWorkingDate);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.salary);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.yearsExperience);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.department);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.workTimeStart);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.workTimeEnd);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.workTimeLunchStart);
+	employeeWorkInfoElements.container.appendChild(employeeWorkInfoElements.workTimeLunchEnd);
 
-	return employeesWorkInfoElements.container;
+	return employeeWorkInfoElements.container;
 }
 
-function calculateAvgSalary(employees) {
-	const salarySum = employees.reduce((sum, employee) => {
+function calculateAvgSalary(employee) {
+	const salarySum = employee.reduce((sum, employee) => {
 		return  sum + parseInt(employee.workInfo.salary);
 	}, 0)
 
-	return Math.round(salarySum / employees.length);
+	return Math.round(salarySum / employee.length);
 }
 
-function findMinSalary(employees) {
-	const salaries = employees.map(employee => parseInt(employee.workInfo.salary));
+function findMinSalary(employee) {
+	const salaries = employee.map(employee => parseInt(employee.workInfo.salary));
 
 	return Math.min(...salaries);
 }
 
-function findMaxSalary(employees) {
-	const salaries = employees.map(employee => employee.workInfo.salary);
+function findMaxSalary(employee) {
+	const salaries = employee.map(employee => employee.workInfo.salary);
 
 	return Math.max(...salaries);
 }
 
-function displaySalariesInfo(employees) {
-	const employeesSalariesInfoElements = {
+function displaySalariesInfo(employee) {
+	const employeeSalariesInfoElements = {
 		container: document.createElement("div"),
 		header: document.createElement("div"),
 		avgSalary: document.createElement("div"),
@@ -270,27 +278,35 @@ function displaySalariesInfo(employees) {
 		maxSalary: document.createElement("div"),
 	}
 
-	employeesSalariesInfoElements.container.className = "employee-salaries-info-container";
-	employeesSalariesInfoElements.header.className = "employee-salaries-info-header";
-	employeesSalariesInfoElements.avgSalary.className = "employee-avg-salary";
-	employeesSalariesInfoElements.minSalary.className = "employee-min-salary";
-	employeesSalariesInfoElements.maxSalary.className = "employee-max-salary";
+	employeeSalariesInfoElements.container.className = "employee-salaries-info-container";
+	employeeSalariesInfoElements.header.className = "employee-salaries-info-header";
+	employeeSalariesInfoElements.avgSalary.className = "employee-avg-salary";
+	employeeSalariesInfoElements.minSalary.className = "employee-min-salary";
+	employeeSalariesInfoElements.maxSalary.className = "employee-max-salary";
 
-	employeesSalariesInfoElements.header.innerHTML = "Salaries information";
-	employeesSalariesInfoElements.avgSalary.innerHTML = `Average salary: ${calculateAvgSalary(employees)} $`;
-	employeesSalariesInfoElements.minSalary.innerHTML = `Minimum salary: ${findMinSalary(employees)} $`;
-	employeesSalariesInfoElements.maxSalary.innerHTML = `Maximum salary: ${findMaxSalary(employees)} $`;
+	employeeSalariesInfoElements.header.innerHTML = "Salaries information";
+	employeeSalariesInfoElements.avgSalary.innerHTML = `Average salary: ${calculateAvgSalary(employee)} $`;
+	employeeSalariesInfoElements.minSalary.innerHTML = `Minimum salary: ${findMinSalary(employee)} $`;
+	employeeSalariesInfoElements.maxSalary.innerHTML = `Maximum salary: ${findMaxSalary(employee)} $`;
 
-	employeesSalariesInfoElements.container.appendChild(employeesSalariesInfoElements.header);
-	employeesSalariesInfoElements.container.appendChild(employeesSalariesInfoElements.avgSalary);
-	employeesSalariesInfoElements.container.appendChild(employeesSalariesInfoElements.minSalary);
-	employeesSalariesInfoElements.container.appendChild(employeesSalariesInfoElements.maxSalary);
+	employeeSalariesInfoElements.container.appendChild(employeeSalariesInfoElements.header);
+	employeeSalariesInfoElements.container.appendChild(employeeSalariesInfoElements.avgSalary);
+	employeeSalariesInfoElements.container.appendChild(employeeSalariesInfoElements.minSalary);
+	employeeSalariesInfoElements.container.appendChild(employeeSalariesInfoElements.maxSalary);
 
-	return employeesSalariesInfoElements.container;
+	return employeeSalariesInfoElements.container;
 }
 
-employees.map(employee => {
-	displayEmployee(employee, employeeStructureElements);
-})
+function main() {
+	employees.map(employee => {
+		displayEmployee(employee, employeeStructureElements);
+	})
 
-document.body.appendChild(displaySalariesInfo(employees));
+	document.body.appendChild(displaySalariesInfo(employees));
+}
+
+if(errorMessage === null) {
+	main();
+} else {
+	document.body.innerHTML = `Error: ${errorMessage}`;
+}
