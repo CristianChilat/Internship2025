@@ -5,6 +5,6 @@ alert(`Hello ${name}`);
 
 if (JSKnowledge === true) {
 	alert("Congratulations!");
-} else if (JSKnowledge === false) {
+} else {
 	alert("You can start your studies right now!");
 }
