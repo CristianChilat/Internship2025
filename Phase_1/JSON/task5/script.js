@@ -144,8 +144,8 @@ function displayPersonalInformation(employee) {
 	employeePersonalInfoElements.birthPlace.className = "employee-birthPlace";
 	employeePersonalInfoElements.birthday.className = "employee-birthday";
 	employeePersonalInfoElements.gender.className = "employee-gender";
-	employeePersonalInfoElements.name.innerHTML = "name";
-	employeePersonalInfoElements.surname.innerHTML = "surname";
+	employeePersonalInfoElements.name.className = "name";
+	employeePersonalInfoElements.surname.className = "surname";
 
 	employeePersonalInfoElements.name.innerHTML = `Name: ${employee.personalInfo.name}`;
 	employeePersonalInfoElements.surname.innerHTML = `Surname: ${employee.personalInfo.surname}`;
