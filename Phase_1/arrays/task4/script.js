@@ -1,6 +1,6 @@
 function validateNumber(number) {
-	return !(isNaN(number) || number === null || number === "");
 
+	return !(isNaN(number) || number === null || number === "");
 }
 
 function sumInputNumbers() {
