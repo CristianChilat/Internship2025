@@ -1,3 +1,8 @@
+function validateNumber(number) {
+	return !(isNaN(number) || number === null || number === "");
+
+}
+
 function sumInputNumbers() {
 	const numbers = []
 	let number;
@@ -5,12 +10,8 @@ function sumInputNumbers() {
 	do {
 		number = prompt("Enter a number")?.trim();
 
-		if (isNaN(number) || number == null) {
-			break;
-		}
-
 		numbers.push(Number(number));
-	} while (true)
+	} while (validateNumber(number));
 
 	return numbers.reduce((a, b) => a + b);
 }
