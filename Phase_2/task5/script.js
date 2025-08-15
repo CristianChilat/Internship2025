@@ -11,6 +11,7 @@ inputElements.displayElement.max = 9;
 
 inputElements.decreaseElement.addEventListener("click", () => {
 	inputElements.increaseElement.disabled = false;
+
 	if (inputElements.displayElement.value > 0) {
 		inputElements.displayElement.value--;
 	} else {
@@ -20,6 +21,7 @@ inputElements.decreaseElement.addEventListener("click", () => {
 
 inputElements.increaseElement.addEventListener("click", () => {
 	inputElements.decreaseElement.disabled = false;
+
 	if (inputElements.displayElement.value < 9) {
 		inputElements.displayElement.value++;
 	} else {
