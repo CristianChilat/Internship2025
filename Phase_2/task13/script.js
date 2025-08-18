@@ -1,7 +1,5 @@
-const parentElement = document.getElementById("parent");
-const deleteChildButton = document.getElementById("delete-button");
+const element = document.querySelector("#elem");
+const otherElement = element.previousElementSibling;
 
-deleteChildButton.addEventListener("click", () => {
-	const childElement = document.querySelector("#parent > #child");
-	childElement.remove();
-})
+otherElement.insertAdjacentText("beforeend", '!');
+

@@ -1,7 +1,6 @@
-const inputElement = document.getElementById('number-input');
+const deleteChildButton = document.getElementById("delete-button");
 
-inputElement.addEventListener('blur', () => {
-	if (inputElement.value < 0 || inputElement.value > 9) {
-		inputElement.value = null;
-	}
+deleteChildButton.addEventListener("click", () => {
+	const childElement = document.querySelector("#parent > #child");
+	childElement.remove();
 })

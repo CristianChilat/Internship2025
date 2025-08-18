@@ -1,5 +1,3 @@
-const element = document.querySelector("#elem");
-const otherElement = element.previousElementSibling;
+const firstChild = document.querySelector("#elem > :first-child")
 
-otherElement.insertAdjacentText("beforeend", '!');
-
+firstChild.style.color = "red";
