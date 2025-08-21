@@ -1,0 +1,6 @@
+.welcome {
+    background-color: rgba(0,0,0,0.11);
+    border-radius: 1em;
+    border: 1px solid black;
+    padding: 1em;
+}
