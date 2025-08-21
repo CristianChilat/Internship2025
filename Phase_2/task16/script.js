@@ -1,4 +1,9 @@
-const formElement = document.getElementById("form");
-const inputElement = formElement.elements.numbers;
+function verifyPressedKeys(event) {
+		return event.key >= 0 && event.key <= 9 || [",", ".", "Backspace"].includes(event.key);
+}
 
-//todo find out what is supposed to happen when not digits were wrote
+document.addEventListener('keydown', (event) => {
+	if (!verifyPressedKeys(event)) {
+		event.preventDefault();
+	}
+})
