@@ -23,6 +23,3 @@ buttonElement.addEventListener("click", () => {
 	}
 
 })
-
-
-
