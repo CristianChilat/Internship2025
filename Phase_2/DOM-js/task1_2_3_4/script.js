@@ -12,23 +12,36 @@ buttonElement.addEventListener("click", () => {
 	document.body.style.backgroundColor = "orange";
 })
 
+function listBraker(num, timerID) {
+	if (num > 20) {
+		return clearInterval(timerID);
+	}
+}
+
+function colorListElements(element, num) {
+	if (num % 2 === 0) {
+		return element.style.backgroundColor = "green";
+	} else {
+		return element.style.backgroundColor = "purple";
+	}
+}
+
+function createLiElement(num) {
+	const liElement = document.createElement("li");
+	liElement.innerHTML = `Element ${num}`;
+	colorListElements(liElement, num);
+	return liElement;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 	let i = 1;
 	const olElement = document.createElement("ol");
 	olElement.id = "ol-container";
 	document.body.appendChild(olElement);
+
 	let numberedListTimer = setInterval(() => {
-		const liElement = document.createElement("li");
-		liElement.innerHTML = `Element ${i}`;
-		olElement.appendChild(liElement);
-		if (i % 2 === 0) {
-			liElement.style.backgroundColor = "green";
-		} else {
-			liElement.style.backgroundColor = "purple";
-		}
+		olElement.appendChild(createLiElement(i));
 		i++;
-		if (i > 20) {
-			clearInterval(numberedListTimer);
-		}
+		listBraker(i, numberedListTimer);
 	}, 2000)
 })

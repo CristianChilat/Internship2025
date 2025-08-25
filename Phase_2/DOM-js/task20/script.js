@@ -5,7 +5,7 @@ const inputElements = {
 }
 
 inputElements.addButton.addEventListener('click', () => {
-	if (inputElements.textField.value !== null && inputElements.textField.value !== '') {
+	if (inputElements.textField.value) {
 		const newRow = document.createElement('tr');
 		const nameElement = document.createElement('td');
 		const deleteButtonElement = document.createElement('td');

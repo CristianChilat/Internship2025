@@ -10,7 +10,7 @@ updateButtonStatus();
 inputElement.addEventListener("input", updateButtonStatus);
 
 buttonElement.addEventListener("click", () => {
-	if (inputElement.value === "" || inputElement.value === null || inputElement.value === undefined) {
+	if (!inputElement.value.trim()) {
 		buttonElement.disabled = true;
 	} else {
 		const listElement = document.createElement("li");

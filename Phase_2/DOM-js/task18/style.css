@@ -1,6 +1,17 @@
+#player-field {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin: 25px;
+    border: 1px solid black;
+}
+
 #player {
-    position: fixed;
+
+    position: relative;
     width: 20px;
     height: 20px;
     background-color: black;
 }
+
