@@ -1,6 +1,7 @@
 const deleteChildButton = document.getElementById("delete-button");
 
-deleteChildButton.addEventListener("click", () => {
-	const childElement = document.querySelector("#parent > #child");
+deleteChildButton.addEventListener("click", (event) => {
+	event.preventDefault();
+	const childElement = document.querySelector("#child");
 	childElement.remove();
 })

@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const buttonElement = document.getElementById("button-orange");
 
-buttonElement.addEventListener("click", () => {
+buttonElement.addEventListener("click", (event) => {
+	event.preventDefault();
 	document.body.style.backgroundColor = "orange";
 })
 
