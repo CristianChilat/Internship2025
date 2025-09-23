@@ -25,18 +25,29 @@ class FormElement {
 	    name: (value, rules) => {
 	        const regex = /^[a-zA-Z]+$/;
 
-			return regex.test(value) &&
-	               value.length >= rules.minLength &&
-	               value.length <= rules.maxLength;
+		    if (rules.minLength && value.length < rules.minLength) {
+			    return false;
+		    }
+
+		    if (rules.maxLength && value.length > rules.maxLength) {
+			    return false;
+		    }
+
+		    return regex.test(value);
 	    },
 	    age: (value, rules) => {
 	        const regex = /^[0-9]+$/;
 	        const num = parseInt(value);
 
-			return regex.test(value) &&
-	               num >= 10 &&
-	               value.length >= rules.minLength &&
-	               value.length <= rules.maxLength;
+		    if (rules.minLength && value.length < rules.minLength) {
+			    return false;
+		    }
+
+		    if (rules.maxLength && value.length > rules.maxLength) {
+			    return false;
+		    }
+
+			return regex.test(value) && num >= 10;
 	    },
 	    birthdate: (value, rules) => {
 	        const regex = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$/;
