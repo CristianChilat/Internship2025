@@ -9,60 +9,76 @@ class FormElement {
 	}
 
 	static validators = {
-    email: (value, rules) => {
-        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return regex.test(value) && 
-               value.length >= rules.minLength && 
-               value.length <= rules.maxLength;
-    },
-    name: (value, rules) => {
-        const regex = /^[a-zA-Z]+$/;
-        return regex.test(value) && 
-               value.length >= rules.minLength && 
-               value.length <= rules.maxLength;
-    },
-    age: (value, rules) => {
-        const regex = /^[0-9]+$/;
-        const num = parseInt(value);
-        return regex.test(value) && 
-               num >= 10 && 
-               value.length >= rules.minLength && 
-               value.length <= rules.maxLength;
-    },
-    birthdate: (value, rules) => {
-        const regex = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$/;
-        return regex.test(value) && 
-               value.length >= rules.minLength && 
-               value.length <= rules.maxLength;
-    }
-}
+	    email: (value, rules) => {
+	        const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+			if (rules.minLength && value.length < rules.minLength) {
+				return false;
+			}
+
+			if (rules.maxLength && value.length > rules.maxLength) {
+				return false;
+			}
+
+			return regex.test(value);
+	    },
+	    name: (value, rules) => {
+	        const regex = /^[a-zA-Z]+$/;
+
+			return regex.test(value) &&
+	               value.length >= rules.minLength &&
+	               value.length <= rules.maxLength;
+	    },
+	    age: (value, rules) => {
+	        const regex = /^[0-9]+$/;
+	        const num = parseInt(value);
+
+			return regex.test(value) &&
+	               num >= 10 &&
+	               value.length >= rules.minLength &&
+	               value.length <= rules.maxLength;
+	    },
+	    birthdate: (value, rules) => {
+	        const regex = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.(19|20)\d{2}$/;
+
+			return regex.test(value) &&
+	               value.length >= rules.minLength &&
+	               value.length <= rules.maxLength;
+	    }
+	}
 
 	static validate(element) {
-    const value = element.value;
-    const validatorType = element.getAttribute('name');
-    
-    // Find the matching rules from formSchema
-    const rules = formSchema.find(item => item.name === validatorType)?.rules;
+	    const value = element.value;
+	    const validatorType = element.getAttribute('name');
 
-    if (!FormElement.validators[validatorType]) {
-        console.warn(`No validator found for type: ${validatorType}`);
-        return true;
-    }
+		if (!value || !validatorType) {
+			return false;
+		}
 
-    if (!rules) {
-        console.warn(`No rules found for: ${validatorType}`);
-        return true;
-    }
+	    const rules = formSchema.find(item => item.name === validatorType)?.rules;
 
-    const isValid = FormElement.validators[validatorType](value, rules);
-    element.style.borderColor = isValid ? 'green' : 'red';
-    element.style.borderStyle = 'solid';
-    return isValid;
-}
+	    if (!FormElement.validators[validatorType]) {
+	        console.warn(`No validator found for type: ${validatorType}`);
+
+	        return true;
+	    }
+
+	    if (!rules) {
+	        console.warn(`No rules found for: ${validatorType}`);
+
+			return true;
+	    }
+
+	    const isValid = FormElement.validators[validatorType](value, rules);
+	    element.style.borderColor = isValid ? 'green' : 'red';
+	    element.style.borderStyle = 'solid';
+
+		return isValid;
+	}
 
 
 	create() {
-		const inputElementContainer = document.createElement('div');
+		const inputElementContainer = document.createElement('label');
 		inputElementContainer.classList.add(`input-container-${this.name}`);
 
 		const element = document.createElement('input');
