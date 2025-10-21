@@ -1,0 +1,46 @@
+#app {
+    width: fit-content;
+    border: 1px solid black;
+    min-width: 20em;
+}
+
+#todos-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 1em 0;
+}
+
+.todo-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+    max-width: 15em;
+}
+
+.todo-container span {
+    max-width: 15em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.modify-button {
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+}
+
+.modify-button:hover {
+    opacity: 0.9;
+}
+
+.delete-button {
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+}
+
+.delete-button:hover {
+    opacity: 0.9;
+}
