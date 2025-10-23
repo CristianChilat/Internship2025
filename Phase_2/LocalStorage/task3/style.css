@@ -1,0 +1,47 @@
+form {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: 0 auto;
+    padding: 1em;
+    border: 1px solid black;
+}
+
+form input {
+    width: 100%;
+}
+
+.languages-checkboxes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.languages-checkboxes-container label {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+#buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+}
+
+#buttons-container button {
+    padding: 0.8em;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#clear-button:hover {
+    background-color: red;
+}
+
+#save-button {
+    background-color: green;
+    color: white;
+}
