@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<form action="">
+	<div id="name-container">
+		<h2>Your name</h2>
+		<div>
+			<label for="name-input">
+				<input type="text" id="name-input" placeholder="Input name here">
+			</label>
+		</div>
+	</div>
+	<div id="country-container">
+		<h2>Your city</h2>
+		<div>
+			<label for="city-input">
+				<input list="cities" name="city" id="city-input" placeholder="Select or type a city">
+				<datalist id="cities"></datalist>
+			</label>
+		</div>
+	</div>
+	<div id="languages-container">
+		<h2>Languages you know</h2>
+		<div class="languages-checkboxes-container">
+			<label for="romanian-language-checkbox">
+				<input type="checkbox" name="romanian" id="romanian-language-checkbox">
+				<span>Romanian</span>
+			</label>
+			<label for="english-language-checkbox">
+				<input type="checkbox" name="english" id="english-language-checkbox">
+				<span>English</span>
+			</label>
+			<label for="french-language-checkbox">
+				<input type="checkbox" name="french" id="french-language-checkbox">
+				<span>French</span>
+			</label>
+		</div>
+	</div>
+	<div id="personal-info-container">
+		<h2>Your motivation to become a developer</h2>
+		<div>
+			<label for="your-motivation-input">
+				<textarea name="motivation" id="your-motivation-input" placeholder="Write your message here"></textarea>
+			</label>
+		</div>
+	</div>
+	<div id="buttons-container">
+		<button type="reset" id="clear-button">
+			Clear
+		</button>
+		<button type="submit" id="save-button">
+			Save
+		</button>
+	</div>
+</form>
+<script src="script.js"></script>
+</body>
+</html>
