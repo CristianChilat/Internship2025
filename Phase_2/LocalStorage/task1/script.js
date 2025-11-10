@@ -5,7 +5,7 @@ inputElement.placeholder = 'Write here';
 
 clearButtonElement.textContent = 'Clear';
 
-if(!(inputElement.value) || inputElement.value !== '') {
+if (!inputElement.value) {
 	inputElement.value = localStorage.getItem('input');
 }
 
